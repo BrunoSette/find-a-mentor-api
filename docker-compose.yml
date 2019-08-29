@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   find-a-mentor-api:
@@ -9,6 +9,8 @@ services:
       - ./:/usr/src
     ports:
       - 3000:3000
+      - 443:443
+      - 80:80
     working_dir: /usr/src
     environment:
       - MONGO_DATABASE_URL=mongodb://find-a-mentor-mongo/codingcoach
@@ -18,6 +20,6 @@ services:
     container_name: find-a-mentor-mongo
     hostname: find-a-mentor-mongo
     volumes:
-      - "./local-mongo:/data/db"
+      - './local-mongo:/data/db'
     ports:
       - 27017:27017
