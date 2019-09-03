@@ -7,8 +7,18 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.enableCors({origin: process.env.CORS_ORIGIN || 'https://mentors.codingcoach.io'});
+  const certFile = fs.readFileSync(__dirname + '/../certificate.pem');
+  const keyFile = fs.readFileSync(__dirname + '/../key.pem');
+
+  const app = await NestFactory.create(AppModule, {
+    httpsOptions: {
+      key: keyFile,
+      cert: certFile,
+    },
+  });
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN || 'https://mentors.codingcoach.io',
+  });
   const options = new DocumentBuilder()
     .setTitle('Coding Coach')
     .setDescription('A REST API for the coding coach platform')
