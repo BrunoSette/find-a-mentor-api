@@ -38,6 +38,11 @@ export class UserDto {
   readonly title: string;
 
   @ApiModelPropertyOptional()
+  @IsString()
+  @IsOptional()
+  readonly price: string;
+
+  @ApiModelPropertyOptional()
   @Length(3, 140)
   @IsString()
   @IsOptional()

@@ -29,6 +29,7 @@ export interface User extends Document {
   readonly avatar: string;
   readonly title: string;
   readonly description: string;
+  readonly price: string;
   readonly country: string;
   readonly spokenLanguages: string[];
   readonly tags: string[];
