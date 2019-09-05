@@ -7,8 +7,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const certFile = fs.readFileSync(__dirname + '/certificate.pem');
-  const keyFile = fs.readFileSync(__dirname + '/key.pem');
+  const certFile = fs.readFileSync(__dirname + '/../certificate.pem');
+  const keyFile = fs.readFileSync(__dirname + '/../key.pem');
 
   const app = await NestFactory.create(AppModule, {
     httpsOptions: {
