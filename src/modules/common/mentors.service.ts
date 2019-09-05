@@ -11,8 +11,9 @@ import { Application, Status } from './interfaces/application.interface';
 export class MentorsService {
   constructor(
     @Inject('USER_MODEL') private readonly userModel: Model<User>,
-    @Inject('APPLICATION_MODEL') private readonly applicationModel: Model<Application>,
-  ) { }
+    @Inject('APPLICATION_MODEL')
+    private readonly applicationModel: Model<Application>,
+  ) {}
 
   /**
    * Search for mentors by the given filters
@@ -40,11 +41,20 @@ export class MentorsService {
       onlyMentors.spokenLanguages = filters.spokenLanguages;
     }
 
-    const countries: FilterDto[] = await this.userModel.findUniqueCountries(onlyMentors);
-    const languages: FilterDto[] = await this.userModel.findUniqueLanguages(onlyMentors);
-    const technologies: FilterDto[] = await this.userModel.find(onlyMentors).distinct('tags');
-    const total: number = await this.userModel.find(onlyMentors).countDocuments();
-    const mentors: User[] = await this.userModel.find(onlyMentors)
+    const countries: FilterDto[] = await this.userModel.findUniqueCountries(
+      onlyMentors,
+    );
+    const languages: FilterDto[] = await this.userModel.findUniqueLanguages(
+      onlyMentors,
+    );
+    const technologies: FilterDto[] = await this.userModel
+      .find(onlyMentors)
+      .distinct('tags');
+    const total: number = await this.userModel
+      .find(onlyMentors)
+      .countDocuments();
+    const mentors: User[] = await this.userModel
+      .find(onlyMentors)
       .select(projections)
       .skip(filters.offset)
       .limit(filters.limit)
@@ -70,7 +80,8 @@ export class MentorsService {
     return await this.applicationModel
       .find(filters)
       .populate({
-        path: 'user', select: [
+        path: 'user',
+        select: [
           '_id',
           'name',
           'email',
@@ -83,6 +94,7 @@ export class MentorsService {
           'spokenLanguages',
           'tags',
           'title',
+          'price',
         ],
       })
       .exec();
@@ -98,7 +110,10 @@ export class MentorsService {
   }
 
   async updateApplication(application: ApplicationDto): Promise<Query<any>> {
-    return await this.applicationModel.updateOne({ _id: application._id }, application);
+    return await this.applicationModel.updateOne(
+      { _id: application._id },
+      application,
+    );
   }
 
   /**
@@ -106,7 +121,12 @@ export class MentorsService {
    * @param user
    */
   async findActiveApplicationByUser(user: User): Promise<Application> {
-    return await this.applicationModel.findOne({ user: user._id, status: { $in: [Status.PENDING, Status.APPROVED]} }).exec();
+    return await this.applicationModel
+      .findOne({
+        user: user._id,
+        status: { $in: [Status.PENDING, Status.APPROVED] },
+      })
+      .exec();
   }
 
   async findApplicationById(id: string): Promise<Application> {
@@ -143,6 +163,7 @@ export class MentorsService {
       createdAt: true,
       tags: true,
       country: true,
+      price: true,
       spokenLanguages: true,
     };
 
