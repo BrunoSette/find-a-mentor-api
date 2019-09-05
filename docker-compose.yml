@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   find-a-mentor-api:
+    restart: always
     image: node:10-alpine
     container_name: find-a-mentor-api
     command: sh -c "yarn install; yarn start:prod"
@@ -14,6 +15,7 @@ services:
       - MONGO_DATABASE_URL=mongodb://find-a-mentor-mongo/codingcoach
 
   find-a-mentor-mongo:
+    restart: always
     image: mongo:4
     container_name: find-a-mentor-mongo
     hostname: find-a-mentor-mongo
