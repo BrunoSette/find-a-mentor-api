@@ -95,6 +95,7 @@ export class MentorsService {
           'tags',
           'title',
           'price',
+          'aulagratis',
         ],
       })
       .exec();

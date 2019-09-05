@@ -43,6 +43,11 @@ export class UserDto {
   readonly price: string;
 
   @ApiModelPropertyOptional()
+  @IsString()
+  @IsOptional()
+  readonly aulagratis: string;
+
+  @ApiModelPropertyOptional()
   @Length(3, 140)
   @IsString()
   @IsOptional()

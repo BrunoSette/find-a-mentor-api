@@ -36,6 +36,7 @@ export const UserSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: String,
+  aulagratis: String,
   country: String,
   spokenLanguages: Array,
   tags: Array,
