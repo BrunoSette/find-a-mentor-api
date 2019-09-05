@@ -62,6 +62,13 @@
   dependencies:
     optional "0.1.4"
 
+"@now/node@^0.12.7":
+  version "0.12.8"
+  resolved "https://registry.yarnpkg.com/@now/node/-/node-0.12.8.tgz#9b8f5c81f80119401cb61fa0f9aa30fda5cf292a"
+  integrity sha512-FgSrSECIA57YbV/m8HdLJBlK1h74rmkuppuTLMe1fHxPWypJbaXWlSrToYv8zP34x2Lv481W2YDYJ3EQFm9Hcg==
+  dependencies:
+    "@types/node" "*"
+
 "@nuxtjs/opencollective@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/opencollective/-/opencollective-0.2.2.tgz#26a761ebf588cc92a422d7cee996a66bd6e2761e"
